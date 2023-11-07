@@ -1,5 +1,8 @@
 // Your Name
-//
+// Samuel Zhang
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class IntBST {
 
@@ -43,8 +46,41 @@ public class IntBST {
 
 
     // add preOrder, postOrder, and revOrder
+    public void preOrder() {
+        preOrder(root);
+    }
 
+    private void preOrder(TreeNode tree) {
+        if (tree != null) {
+            System.out.print(tree.value + " ");
+            preOrder(tree.left);
+            preOrder(tree.right);
+        }
+    }
 
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    private void postOrder(TreeNode tree) {
+        if (tree != null) {
+            postOrder(tree.left);
+            postOrder(tree.right);
+            System.out.print(tree.value + " ");
+        }
+    }
+
+    public void revOrder() {
+        revOrder(root);
+    }
+
+    private void revOrder(TreeNode tree) {
+        if (tree != null) {
+            revOrder(tree.right);
+            System.out.print(tree.value + " ");
+            revOrder(tree.left);
+        }
+    }
     
     public int getNumLevels() {
 		return getNumLevels(root);
@@ -61,12 +97,66 @@ public class IntBST {
 
 
     // add getNumLeaves, getWidth, getHeight, getNumNodes, toString, and isFull here
+    public int getNumLeaves() {
+        return getNumLeaves(root);
+    }
+
+    private int getNumLeaves(TreeNode tree) {
+        if (tree == null) {
+            return 0;
+        }
+        if (tree.left == null && tree.right == null) {
+            return 1;
+        }
+        return getNumLeaves(tree.left) + getNumLeaves(tree.right);
+    }
 
 
 
+    // public int getWidth() {
+    //     return getWidth(root);
+    // }
+
+    // private int getWidth(TreeNode tree) {
+    //     if (tree != null) {
+    //         if (getWidth(tree.left) > getWidth(tree.right)) {
+    //             return 1 + getWidth(tree.left);
+    //         }
+    //         return 1 + getWidth(tree.right);
+    //     }
+    //     return 0;
+    // }
+
+    public int getHeight() {
+        return getNumLevels() - 1;
+    }
 
 
+    public int getNumNodes() {
+        return getNumNodes(root);
+    }
 
+    private int getNumNodes(TreeNode tree) {
+        if (tree != null) {
+            return 1 + getNumNodes(tree.left) + getNumNodes(tree.right);
+        }
+        return 0;
+    }
+
+
+    @Override
+    public String toString() {
+        return toString("", root);
+    }
+
+    private String toString(String result, TreeNode tree) {
+        if (tree != null) {
+            toString(result, tree.left);
+            result += tree.value;
+            toString(result, tree.right);
+        }
+        return "";
+    }
 
 
 
@@ -78,10 +168,22 @@ public class IntBST {
 
 
     // add search, getLargest, getSmallest, levelOrder, remove, displayTree here
-
-
-
-
+    public void levelOrder() {
+        if (root != null) {
+            Queue<TreeNode> queue = new LinkedList<TreeNode>();
+            queue.add(root);
+            while (!queue.isEmpty()) {
+                TreeNode node = queue.remove();
+                System.out.print(node.value + " ");
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+        }
+    }
 
 
     private static class TreeNode {
