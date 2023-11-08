@@ -21,15 +21,15 @@ public class IntBSTRunner {
         bst.revOrder();
         System.out.println();
 
-        // System.out.println("Tree height is " + bst.getHeight());
-        // System.out.println("Tree width is " + bst.getWidth());
+        System.out.println("Tree height is " + bst.getHeight());
+        System.out.println("Tree width is " + bst.getWidth());
 
         System.out.println("Number of leaves is " + bst.getNumLeaves());
         System.out.println("Number of nodes is " + bst.getNumNodes());
         System.out.println("Number of levels is " + bst.getNumLevels());
 
         System.out.println("Tree as a string " + bst.toString());
-
+        System.err.println(bst.isFull());
         System.out.println("Tree before removing any nodes - using level order traversal.");
         bst.levelOrder();
     }

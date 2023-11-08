@@ -113,19 +113,37 @@ public class IntBST {
 
 
 
-    // public int getWidth() {
-    //     return getWidth(root);
-    // }
+    public int getWidth() {
+        if (root == null) {
+            return 0;
+        }
 
-    // private int getWidth(TreeNode tree) {
-    //     if (tree != null) {
-    //         if (getWidth(tree.left) > getWidth(tree.right)) {
-    //             return 1 + getWidth(tree.left);
-    //         }
-    //         return 1 + getWidth(tree.right);
-    //     }
-    //     return 0;
-    // }
+        Queue<TreeNode> level = new LinkedList<TreeNode>();
+        Queue<TreeNode> children = new LinkedList<TreeNode>();
+        int max = 1;
+        level.add(root);
+
+        while (!level.isEmpty()) {
+            TreeNode tree = level.remove();
+            if (tree.left != null) {
+                children.add(tree.left);
+            }
+            if (tree.right != null) {
+                children.add(tree.right);
+            }
+            if (level.isEmpty()) {
+                if (children.size() > max) {
+                    max = children.size();
+                }
+                while (!children.isEmpty()) {
+                    level.add(children.remove());
+                }
+            }
+        }
+
+        return max;
+    }
+
 
     public int getHeight() {
         return getNumLevels() - 1;
@@ -146,20 +164,31 @@ public class IntBST {
 
     @Override
     public String toString() {
-        return toString("", root);
+        return toString(new StringBuilder(), root);
     }
 
-    private String toString(String result, TreeNode tree) {
+    private String toString(StringBuilder result, TreeNode tree) {
         if (tree != null) {
             toString(result, tree.left);
-            result += tree.value;
+            result.append(tree.value + " ");
             toString(result, tree.right);
         }
-        return "";
+        return result.toString();
     }
 
+    public boolean isFull() {
+        return isFull(root);
+    }
 
-
+    private boolean isFull(TreeNode tree) {
+        if (tree != null) {
+            if (tree.left == null && tree.right != null || tree.left != null && tree.right == null) {
+                return false;
+            }
+            return isFull(tree.left) && isFull(tree.right);
+        }
+        return true;
+    }
 
 
 
