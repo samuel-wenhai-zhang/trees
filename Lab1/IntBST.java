@@ -248,6 +248,18 @@ public class IntBST {
         }
     }
 
+    public void remove(int value) {
+        TreeNode tree = root;
+        while (tree != null && tree.value != value) {
+            if (tree.value < value) {
+                tree = tree.left;
+            }
+            else {
+                tree = tree.right;
+            }
+        }
+    }
+
 
     private static class TreeNode {
         private int value;
