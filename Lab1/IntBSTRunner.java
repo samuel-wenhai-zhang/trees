@@ -29,7 +29,14 @@ public class IntBSTRunner {
         System.out.println("Number of levels is " + bst.getNumLevels());
 
         System.out.println("Tree as a string " + bst.toString());
-        System.err.println(bst.isFull());
+        
+        System.out.println(bst.isFull() ? "The tree is full." : "The tree is not full.");
+
+        System.out.println(bst.search(100) ? "The tree contains 100!" : "The tree does not contains 100!");
+        System.out.println(bst.search(114) ? "The tree contains 114!" : "The tree does not contain 114!");        
+        
+        System.out.println("The smallest tree node " + bst.getSmallest());
+        System.out.println("The largest tree node " + bst.getLargest());
         System.out.println("Tree before removing any nodes - using level order traversal.");
         bst.levelOrder();
     }

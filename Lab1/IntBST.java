@@ -2,6 +2,7 @@
 // Samuel Zhang
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class IntBST {
@@ -190,13 +191,46 @@ public class IntBST {
         return true;
     }
 
-
-
-
-
-
-
     // add search, getLargest, getSmallest, levelOrder, remove, displayTree here
+    public boolean search(int value) {
+        return search(root, value);
+    }
+
+    private boolean search(TreeNode tree, int value) {
+        if (tree != null) {
+            if (tree.value == value) {
+                return true;
+            }
+            if (tree.value > value) {
+                return search(tree.left, value);
+            }
+            return search(tree.right, value);
+        }
+        return false;
+    }
+
+    public int getLargest() {
+        TreeNode tree = root;
+        if (tree != null) {
+            while (tree.right != null) {
+                tree = tree.right;
+            }
+            return tree.value;
+        }
+        throw new NoSuchElementException();
+    }
+
+    public int getSmallest() {
+        TreeNode tree = root;
+        if (tree != null) {
+            while (tree.left != null) {
+                tree = tree.left;
+            }
+            return tree.value;
+        }
+        throw new NoSuchElementException();
+    }
+
     public void levelOrder() {
         if (root != null) {
             Queue<TreeNode> queue = new LinkedList<TreeNode>();
