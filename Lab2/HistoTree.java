@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
+//Name - Samuel Zhang
 
 public class HistoTree<T extends Comparable<T>>
 {
@@ -14,32 +14,54 @@ public class HistoTree<T extends Comparable<T>>
 
 	public void addData(T data)
 	{
-		
+		add(data, root);
 	}
 
 	private HistoNode<T> add(T data, HistoNode<T> tree)
-	{
-		return null;
+	{	
+		if (root == null) {
+			root = new HistoNode<T>(data, 1, null, null);
+		}
+		else if (tree == null) {
+			tree = new HistoNode<T>(data, 1, null, null);
+		}
+		else {
+			if (data.compareTo(tree.getData()) == 0) {
+				tree.setDataCount(tree.getDataCount() + 1);
+			}
+			else if (data.compareTo(tree.getData()) < 0) {
+				tree.setLeft(add(data, tree.getLeft()));
+			}
+			else {
+				tree.setRight(add(data, tree.getRight()));
+			}
+		}
+		return tree;
 	}
 
 	public HistoNode<T> search(T data)
 	{
-		return null;
+		return search(data, root);
 	}
 
 	private HistoNode<T> search(T data, HistoNode<T> tree)
 	{
+		if (tree != null) {
+
+		}
 		return null;
 	}
 
 	public String toString()
 	{
-		return null;
+		return toString(root);
 	}
 
 	private String toString(HistoNode<T> tree)
 	{
-		return null;
-
+		if (tree != null) {
+			return toString(tree.getLeft()) + tree.getData() + " - " + tree.getDataCount() + "    " + toString(tree.getRight());
+		}
+		return "";
 	}
 }
