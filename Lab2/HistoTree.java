@@ -47,7 +47,15 @@ public class HistoTree<T extends Comparable<T>>
 	private HistoNode<T> search(T data, HistoNode<T> tree)
 	{
 		if (tree != null) {
-
+			if (tree.getData().compareTo(data) == 0) {
+				return tree;
+			}
+			if (data.compareTo(tree.getData()) < 0) {
+				return search(data, tree.getLeft());
+			} 
+			else {
+				return search(data, tree.getRight());
+			}
 		}
 		return null;
 	}

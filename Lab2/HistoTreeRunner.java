@@ -25,6 +25,8 @@ public class HistoTreeRunner
 		test1.addData('E');
 		test1.addData('A');
 		System.out.println(test1);
+		System.out.println(test1.search('A').getData());
+		System.out.println(test1.search('V').getData());
 
 		HistoTree<Integer> test2 = new HistoTree<Integer>();
 		test2.addData(1);
@@ -37,6 +39,9 @@ public class HistoTreeRunner
 		test2.addData(22);
 		test2.addData(13);
 		System.out.println(test2);
+		System.out.println(test2.search(1).getData());
+		System.out.println(test2.search(13).getData());
+
 
 		HistoTree<String> test3 = new HistoTree<String>();
 		test3.addData("abc");
@@ -49,5 +54,8 @@ public class HistoTreeRunner
 		test3.addData("2342");
 		test3.addData("x2y2z");
 		System.out.println(test3);
+		System.out.println(test3.search("abc").getData());
+		System.out.println(test3.search("2342").getData());
+
 	}
 }
